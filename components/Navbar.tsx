@@ -37,7 +37,7 @@ const Navbar = () => {
           <Link href="/">
             <div className="relative w-48 h-14">
               <Image
-                src={isScrolled ? '/logo-dark.png' : '/logo-white.png'}
+              src="/logoFNL.png"
                 alt="FNL RDC"
                 fill
                 className="object-contain"

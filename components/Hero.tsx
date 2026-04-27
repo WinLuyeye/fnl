@@ -1,124 +1,147 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import 'remixicon/fonts/remixicon.css';
 
 const Hero = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const slides = [
-    {
-      title: 'Forum National de la Logistique RDC 2027',
-      ghost: 'FNL',
-      description:
-        "Le plus grand événement logistique de la République Démocratique du Congo réunissant les acteurs du transport, de la supply chain et de l’innovation.",
-      video: 'https://www.youtube.com/embed/Xbpl9GEjQ-Q?si=huSiYW8kGrjcy9GY', // exemple
-    },
-    {
-      title: 'Connecter les acteurs du transport en Afrique',
-      ghost: 'Logistics',
-      description:
-        "Une plateforme stratégique pour les entreprises, investisseurs et institutions engagés dans la transformation logistique en Afrique centrale.",
-      video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-    },
-    {
-      title: 'Innovation & Supply Chain intelligente',
-      ghost: 'Supply',
-      description:
-        "Digitalisation, corridors logistiques et modernisation des infrastructures au cœur des discussions du FNL 2027.",
-      video: 'https://www.youtube.com/embed/ysz5S6PUM-U',
-    },
-  ];
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    mins: 0,
+    secs: 0,
+  });
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 8000);
-    return () => clearInterval(timer);
+    const targetDate = new Date('2027-04-22T00:00:00');
+    const interval = setInterval(() => {
+      const now = new Date();
+      const diff = targetDate.getTime() - now.getTime();
+
+      setTimeLeft({
+        days: Math.max(Math.floor(diff / (1000 * 60 * 60 * 24)), 0),
+        hours: Math.max(Math.floor((diff / (1000 * 60 * 60)) % 24), 0),
+        mins: Math.max(Math.floor((diff / (1000 * 60)) % 60), 0),
+        secs: Math.max(Math.floor((diff / 1000) % 60), 0),
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="relative h-screen w-full overflow-hidden bg-black">
+    <section className="relative h-screen w-full overflow-hidden text-white">
 
-      {/* VIDEO SLIDES */}
-      {slides.map((slide, index) => (
-        <motion.div
-          key={index}
-          className="absolute inset-0"
-          animate={{ opacity: index === currentSlide ? 1 : 0 }}
-          transition={{ duration: 1 }}
-        >
-          <div className="absolute inset-0">
-            <iframe
-              className="w-full h-full object-cover scale-125"
-              src={`${slide.video}?autoplay=1&mute=1&controls=0&loop=1&playlist=${slide.video.split('/').pop()}`}
-              allow="autoplay; fullscreen"
-            />
-          </div>
+      {/* VIDEO */}
+      <div className="absolute inset-0">
+        <video autoPlay muted loop playsInline className="w-full h-full object-cover">
+          <source src="/video/hero-background.mp4" type="video/mp4" />
+        </video>
+      </div>
 
-          <div className="absolute inset-0 bg-[#0f2a3d]/80" />
-        </motion.div>
-      ))}
+      {/* OVERLAY */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0f2a3d]/90 via-[#1a1a40]/80 to-black/90" />
+
+      {/* SOCIAL LEFT */}
+      <div className="absolute left-6 top-1/2 -translate-y-1/2 z-20 hidden md:flex flex-col gap-5 items-center">
+
+        <span className="text-xs text-gray-300 rotate-180 [writing-mode:vertical-rl] tracking-widest">
+          FOLLOW US
+        </span>
+
+        <Link href="https://facebook.com" target="_blank" className="hover:text-blue-400 transition">
+          <i className="ri-facebook-fill text-xl"></i>
+        </Link>
+
+        <Link href="https://twitter.com" target="_blank" className="hover:text-gray-300 transition">
+          <i className="ri-twitter-x-line text-xl"></i>
+        </Link>
+
+        <Link href="https://instagram.com" target="_blank" className="hover:text-pink-400 transition">
+          <i className="ri-instagram-line text-xl"></i>
+        </Link>
+
+        <Link href="https://linkedin.com" target="_blank" className="hover:text-blue-300 transition">
+          <i className="ri-linkedin-fill text-xl"></i>
+        </Link>
+
+        <Link href="https://wa.me/243000000000" target="_blank" className="hover:text-green-400 transition">
+          <i className="ri-whatsapp-line text-xl"></i>
+        </Link>
+
+      </div>
 
       {/* CONTENT */}
       <div className="relative z-10 h-full flex items-center">
-        <div className="max-w-7xl mx-auto px-6 w-full">
+        <div className="max-w-7xl mx-auto px-6 w-full grid md:grid-cols-2 gap-10 items-center">
 
-          {/* Ghost */}
-          <motion.h1
-            key={slides[currentSlide].ghost}
-            className="hidden md:block absolute text-[120px] lg:text-[200px] font-extrabold text-white/5 uppercase"
-          >
-            {slides[currentSlide].ghost}
-          </motion.h1>
-
-          <div className="max-w-3xl">
-
-            <motion.h2
-              key={slides[currentSlide].title}
-              className="text-4xl md:text-6xl font-extrabold text-white mb-6"
-            >
-              {slides[currentSlide].title}
-            </motion.h2>
-
-            <motion.p className="text-gray-300 text-lg mb-8">
-              {slides[currentSlide].description}
-            </motion.p>
-
-            <div className="flex gap-4 flex-wrap">
-              <Link
-                href="/inscription"
-                className="bg-white text-black px-6 py-3 font-semibold"
-              >
-                S’inscrire
-              </Link>
-
-              <Link
-                href="/sponsors"
-                className="border border-white text-white px-6 py-3"
-              >
-                Devenir sponsor
-              </Link>
+          {/* LEFT */}
+          <div>
+            <div className="text-sm tracking-widest text-gray-300 mb-4">
+              22-24 AVRIL 2027
             </div>
 
+            <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
+              FORUM<br />
+              NATIONAL<br />
+              <span className="text-blue-400">LOGISTIQUE RDC</span>
+            </h1>
+
+            <p className="text-gray-300 mb-6 flex items-center gap-2">
+              <i className="ri-map-pin-line"></i>
+              Pullman Kinshasa Grand Hôtel, Gombe
+            </p>
+
+            <div className="flex flex-wrap gap-4">
+
+              <Link
+                href="/programme"
+                className="bg-white text-black px-6 py-3 font-semibold flex items-center gap-2 hover:scale-105 transition"
+              >
+                DÉCOUVRIR
+                <i className="ri-arrow-right-line"></i>
+              </Link>
+
+              <Link
+                href="/inscription"
+                className="border border-white px-6 py-3 flex items-center gap-2 hover:bg-white hover:text-black transition"
+              >
+                <i className="ri-user-add-line"></i>
+                S’INSCRIRE
+              </Link>
+
+            </div>
           </div>
+
+          {/* COUNTDOWN */}
+          <div className="flex justify-start md:justify-end">
+            <div className="grid grid-cols-4 gap-4">
+
+              {[
+                { label: 'JOURS', value: timeLeft.days },
+                { label: 'HRS', value: timeLeft.hours },
+                { label: 'MINS', value: timeLeft.mins },
+                { label: 'SECS', value: timeLeft.secs },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="bg-white/10 backdrop-blur-md px-6 py-4 text-center border border-white/10"
+                >
+                  <div className="text-3xl font-bold">
+                    {item.value}
+                  </div>
+                  <div className="text-xs text-gray-300 tracking-widest">
+                    {item.label}
+                  </div>
+                </div>
+              ))}
+
+            </div>
+          </div>
+
         </div>
       </div>
-
-      {/* INDICATORS */}
-      <div className="absolute bottom-8 left-6 flex gap-3 z-20">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            className={`h-1 transition-all ${
-              index === currentSlide ? 'w-10 bg-white' : 'w-4 bg-white/40'
-            }`}
-          />
-        ))}
-      </div>
-    </div>
+    </section>
   );
 };
 
