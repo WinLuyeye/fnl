@@ -84,7 +84,7 @@ const Hero = () => {
             <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
               FORUM<br />
               NATIONAL<br />
-              <span className="text-blue-400">LOGISTIQUE RDC</span>
+              <span className="text-[#F2B233]">LOGISTIQUE RDC</span>
             </h1>
 
             <p className="text-gray-300 mb-6 flex items-center gap-2">
