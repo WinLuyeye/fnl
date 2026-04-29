@@ -3,6 +3,8 @@ import Schema from "./(seo)/schema";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
+import AppLoaderWrapper from "@/components/AppLoaderWrapper";
+
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -124,8 +126,15 @@ export default function RootLayout({
       </head>
 
       <body className="min-h-full flex flex-col bg-white text-black">
-        <Schema />
-        {children}
+
+        {/* GLOBAL LOADER WRAPPER */}
+        <AppLoaderWrapper>
+
+          <Schema />
+          {children}
+
+        </AppLoaderWrapper>
+
       </body>
     </html>
   );
