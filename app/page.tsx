@@ -14,18 +14,47 @@ import WhyAttend from "@/components/WhyAttend";
 export default function Home() {
 
   return (
-    <main>
-      <Navbar />
-      <Hero />
-      <AboutFNL />
-      <WhyAttend />
-      <Programme />
-      <Speakers />
-      <Partners />
-      <Tickets />
-      <FAQ />
-      <LocationAndCTA />
-      <Footer />
-    </main>
+<main>
+  <div id="home">
+    <Navbar />
+    <Hero />
+  </div>
+
+  <section id="about">
+    <AboutFNL />
+  </section>
+
+  <section id="why">
+    <WhyAttend />
+  </section>
+
+  <section id="programme">
+    <Programme />
+  </section>
+
+  <section id="speakers">
+    <Speakers />
+  </section>
+
+  <section id="partners">
+    <Partners />
+  </section>
+
+  <section id="tickets">
+    <Tickets />
+  </section>
+
+  <section id="faq">
+    <FAQ />
+  </section>
+
+  <section id="location">
+    <LocationAndCTA />
+  </section>
+
+  <section id="contact">
+    <Footer />
+  </section>
+</main>
   );
 }
