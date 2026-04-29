@@ -11,12 +11,14 @@ type Partner = {
 
 type Category = {
   title: string;
+  subtitle: string;
   partners: Partner[];
 };
 
 const partnersData: Category[] = [
   {
     title: 'Partenaires Institutionnels',
+    subtitle: 'Organisations publiques et institutions de régulation',
     partners: [
       { name: 'Ministère des Transports', logo: '/images/p1.png' },
       { name: 'ANAPI', logo: '/images/p2.png' },
@@ -25,6 +27,7 @@ const partnersData: Category[] = [
   },
   {
     title: 'Sponsors Gold',
+    subtitle: 'Acteurs majeurs du transport et de la logistique',
     partners: [
       { name: 'Bolloré Logistics', logo: '/images/p4.png' },
       { name: 'DHL', logo: '/images/p5.png' },
@@ -32,6 +35,7 @@ const partnersData: Category[] = [
   },
   {
     title: 'Sponsors Silver',
+    subtitle: 'Partenaires stratégiques et solutions logistiques',
     partners: [
       { name: 'CMA CGM', logo: '/images/p6.png' },
       { name: 'MSC', logo: '/images/p7.png' },
@@ -42,61 +46,83 @@ const partnersData: Category[] = [
 
 const Partners: FC = () => {
   return (
-    <section className="bg-gray-50 py-24 text-[#0A1F44]">
+    <section className="bg-[#0A1F44] text-white py-28">
       <div className="max-w-7xl mx-auto px-6">
 
-        {/* TITLE */}
-        <motion.h2
+        {/* HEADER */}
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-extrabold mb-16"
+          className="mb-20"
         >
-          Nos <span className="text-[#F2B233]">Partenaires</span>
-        </motion.h2>
+          <h2 className="text-4xl md:text-5xl font-extrabold">
+            Nos <span className="text-[#F2B233]">Partenaires</span>
+          </h2>
+          <p className="text-gray-300 mt-4 max-w-2xl">
+            Des institutions et entreprises qui soutiennent la transformation
+            logistique en République Démocratique du Congo.
+          </p>
+        </motion.div>
 
-        {/* CATEGORIES */}
-        <div className="space-y-16">
+        {/* SECTIONS */}
+        <div className="space-y-20">
+
           {partnersData.map((category, i) => (
             <div key={i}>
 
-              {/* CATEGORY TITLE */}
-              <motion.h3
+              {/* CATEGORY HEADER */}
+              <motion.div
                 initial={{ opacity: 0, x: -40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="text-xl font-semibold mb-8"
+                className="mb-10"
               >
-                {category.title}
-              </motion.h3>
+                <h3 className="text-xl md:text-2xl font-semibold text-white">
+                  {category.title}
+                </h3>
+                <p className="text-gray-400 text-sm mt-1">
+                  {category.subtitle}
+                </p>
+              </motion.div>
 
-              {/* LOGOS GRID */}
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 items-center">
+              {/* LOGOS STRIP (premium layout) */}
+              <div className="flex flex-wrap gap-10 items-center">
+
                 {category.partners.map((partner, j) => (
                   <motion.div
                     key={j}
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: j * 0.1 }}
+                    transition={{ delay: j * 0.08 }}
                     viewport={{ once: true }}
-                    className="flex items-center justify-center group"
+                    className="group relative flex items-center justify-center"
                   >
 
-                    <div className="relative w-[140px] h-[70px]">
+                    {/* CARD */}
+                    <div className="relative w-[160px] h-[90px] bg-white/5 backdrop-blur-md border border-white/10 rounded-xl flex items-center justify-center p-4 overflow-hidden">
+
+                      {/* subtle glow hover */}
+                      <div className="absolute inset-0 bg-[#F2B233]/0 group-hover:bg-[#F2B233]/10 transition" />
+
+                      {/* LOGO */}
                       <Image
                         src={partner.logo}
                         alt={partner.name}
                         fill
                         className="object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition duration-300"
                       />
+
                     </div>
 
                   </motion.div>
                 ))}
+
               </div>
 
             </div>
           ))}
+
         </div>
 
       </div>
