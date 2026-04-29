@@ -4,7 +4,14 @@
   --font-family-sans: var(--font-inter);
   --font-family-mono: var(--font-jetbrains-mono);
 }
+html {
+  scroll-behavior: smooth;
+}
 
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 /* TEXTE */
 p {
   line-height: 1.7;
@@ -40,4 +47,3 @@ button {
   animation-delay: 0.4s;
 }
 
-/* SCROLLBAR */
