@@ -5,8 +5,15 @@ import { motion } from 'framer-motion';
 
 const LocationAndCTA: FC = () => {
   return (
-    <section className="bg-[#0A1F44] text-white py-28">
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+    <section className="relative py-28 text-white overflow-hidden">
+
+      {/* BACKGROUND PREMIUM */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#08162F] via-[#0A1F44] to-[#0B2A55]" />
+
+      {/* subtle glow */}
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top,rgba(242,178,51,0.12),transparent_60%)]" />
+
+      <div className="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
 
         {/* LEFT - LOCATION */}
         <div>
@@ -51,8 +58,8 @@ const LocationAndCTA: FC = () => {
             </div>
           </motion.div>
 
-          {/* MAP PLACEHOLDER */}
-          <div className="mt-10 bg-white/10 border border-white/10 h-[220px] flex items-center justify-center text-gray-300">
+          {/* MAP */}
+          <div className="mt-10 rounded-lg overflow-hidden border border-white/10 h-[220px] bg-white/5 flex items-center justify-center text-gray-400">
             Carte Google Maps (à intégrer)
           </div>
 
@@ -63,7 +70,7 @@ const LocationAndCTA: FC = () => {
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="bg-white text-[#0A1F44] p-10 shadow-2xl"
+          className="bg-white text-[#0A1F44] p-10 shadow-2xl rounded-sm"
         >
 
           <span className="text-sm font-semibold tracking-widest text-gray-500 uppercase">
@@ -104,7 +111,7 @@ const LocationAndCTA: FC = () => {
 
           </div>
 
-          {/* CTA BUTTON */}
+          {/* CTA */}
           <button className="mt-10 w-full bg-[#F2B233] text-black py-4 font-semibold hover:bg-[#0A1F44] hover:text-white transition flex items-center justify-center gap-2">
             <i className="ri-user-add-line" />
             S’inscrire maintenant
