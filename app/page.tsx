@@ -2,6 +2,7 @@
 import AboutFNL from "@/components/AboutFNL";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
+import Partners from "@/components/Partners";
 import Programme from "@/components/Programme";
 import Speakers from "@/components/Speakers";
 import Text from "@/components/Text";
@@ -17,6 +18,7 @@ export default function Home() {
       <WhyAttend />
       <Programme />
       <Speakers />
+      <Partners />
       <Text />
     </main>
   );
