@@ -7,6 +7,7 @@ import Partners from "@/components/Partners";
 import Programme from "@/components/Programme";
 import Speakers from "@/components/Speakers";
 import Text from "@/components/Text";
+import Tickets from "@/components/Tickets";
 import WhyAttend from "@/components/WhyAttend";
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
       <Programme />
       <Speakers />
       <Partners />
+      <Tickets />
       <EventDate />
       <Text />
     </main>
