@@ -2,6 +2,7 @@
 import AboutFNL from "@/components/AboutFNL";
 import FAQ from "@/components/FAQ";
 import Hero from "@/components/Hero";
+import LocationAndCTA from "@/components/LocationAndCTA";
 import Navbar from "@/components/Navbar";
 import Partners from "@/components/Partners";
 import Programme from "@/components/Programme";
@@ -22,6 +23,7 @@ export default function Home() {
       <Partners />
       <Tickets />
       <FAQ />
+      <LocationAndCTA />
     </main>
   );
 }
