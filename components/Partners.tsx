@@ -7,121 +7,115 @@ import Image from 'next/image';
 type Partner = {
   name: string;
   logo: string;
+  label: string;
 };
 
-type Category = {
-  title: string;
-  subtitle: string;
-  partners: Partner[];
-};
-
-const partnersData: Category[] = [
+const partners: Partner[] = [
   {
-    title: 'Partenaires Institutionnels',
-    subtitle: 'Organisations publiques et institutions de régulation',
-    partners: [
-      { name: 'Ministère des Transports', logo: '/images/p1.png' },
-      { name: 'ANAPI', logo: '/images/p2.png' },
-      { name: 'FEC', logo: '/images/p3.png' },
-    ],
+    name: 'CCI Franco-Congolaise',
+    logo: '/images/p1.png',
+    label: 'Organisateur',
   },
   {
-    title: 'Sponsors Gold',
-    subtitle: 'Acteurs majeurs du transport et de la logistique',
-    partners: [
-      { name: 'Bolloré Logistics', logo: '/images/p4.png' },
-      { name: 'DHL', logo: '/images/p5.png' },
-    ],
+    name: 'Ambassade de France',
+    logo: '/images/p2.png',
+    label: 'Partenaire Institutionnel',
   },
   {
-    title: 'Sponsors Silver',
-    subtitle: 'Partenaires stratégiques et solutions logistiques',
-    partners: [
-      { name: 'CMA CGM', logo: '/images/p6.png' },
-      { name: 'MSC', logo: '/images/p7.png' },
-      { name: 'Maersk', logo: '/images/p8.png' },
-    ],
+    name: 'Conseillers du Commerce Extérieur',
+    logo: '/images/p3.png',
+    label: 'Partenaire',
+  },
+  {
+    name: 'Choose France',
+    logo: '/images/p4.png',
+    label: 'Partenaire',
   },
 ];
 
 const Partners: FC = () => {
   return (
-    <section className="bg-[#0A1F44] text-white py-28">
+    <section id="partenaires" className="bg-white py-28 text-[#0A1F44]">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* HEADER */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-20"
-        >
-          <h2 className="text-4xl md:text-5xl font-extrabold">
-            Nos <span className="text-[#F2B233]">Partenaires</span>
-          </h2>
-          <p className="text-gray-300 mt-4 max-w-2xl">
-            Des institutions et entreprises qui soutiennent la transformation
-            logistique en République Démocratique du Congo.
+        <div className="mb-20 text-left">
+
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-sm font-semibold tracking-widest text-gray-500 uppercase"
+          >
+            Partenaires
+          </motion.span>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-extrabold mt-3"
+          >
+            Ils nous font confiance
+          </motion.h2>
+
+          <p className="text-gray-600 mt-4 max-w-2xl">
+            Des partenaires institutionnels et privés de premier plan engagés
+            dans le développement de la logistique en Afrique centrale.
           </p>
-        </motion.div>
+        </div>
 
-        {/* SECTIONS */}
-        <div className="space-y-20">
+        {/* LOGOS GRID */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 justify-items-center">
 
-          {partnersData.map((category, i) => (
-            <div key={i}>
+          {partners.map((partner, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: i * 0.1 }}
+              viewport={{ once: true }}
+              className="group"
+            >
 
-              {/* CATEGORY HEADER */}
-              <motion.div
-                initial={{ opacity: 0, x: -40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="mb-10"
-              >
-                <h3 className="text-xl md:text-2xl font-semibold text-white">
-                  {category.title}
-                </h3>
-                <p className="text-gray-400 text-sm mt-1">
-                  {category.subtitle}
-                </p>
-              </motion.div>
-
-              {/* LOGOS STRIP (premium layout) */}
-              <div className="flex flex-wrap gap-10 items-center">
-
-                {category.partners.map((partner, j) => (
-                  <motion.div
-                    key={j}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: j * 0.08 }}
-                    viewport={{ once: true }}
-                    className="group relative flex items-center justify-center"
-                  >
-
-                    {/* CARD */}
-                    <div className="relative w-[160px] h-[90px] bg-white/5 backdrop-blur-md border border-white/10 rounded-xl flex items-center justify-center p-4 overflow-hidden">
-
-                      {/* subtle glow hover */}
-                      <div className="absolute inset-0 bg-[#F2B233]/0 group-hover:bg-[#F2B233]/10 transition" />
-
-                      {/* LOGO */}
-                      <Image
-                        src={partner.logo}
-                        alt={partner.name}
-                        fill
-                        className="object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition duration-300"
-                      />
-
-                    </div>
-
-                  </motion.div>
-                ))}
-
+              <div className="flex justify-center h-[120px]">
+                <Image
+                  src={partner.logo}
+                  alt={partner.name}
+                  width={200}
+                  height={100}
+                  className="object-contain transition duration-300 group-hover:scale-105"
+                />
               </div>
 
-            </div>
+              <p className="mt-4 text-sm font-semibold text-gray-600 text-center">
+                {partner.label}
+              </p>
+
+            </motion.div>
           ))}
+
+        </div>
+
+        {/* CTA */}
+        <div className="mt-24 pt-12 border-t border-gray-200 text-left max-w-4xl">
+
+          <h3 className="text-2xl md:text-3xl font-bold mb-4">
+            Devenez partenaire
+          </h3>
+
+          <p className="text-gray-600 mb-8">
+            Associez votre marque au plus grand événement logistique en RDC
+            et bénéficiez d’une visibilité stratégique auprès des décideurs.
+          </p>
+
+          <a
+            href="/contact"
+            className="inline-flex items-center gap-2 bg-[#0A1F44] text-white px-8 py-4 font-semibold hover:bg-[#F2B233] hover:text-black transition"
+          >
+            Contactez-nous
+            <i className="ri-mail-line"></i>
+          </a>
 
         </div>
 

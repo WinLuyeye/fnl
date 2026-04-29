@@ -1,5 +1,6 @@
 "use client";
 import AboutFNL from "@/components/AboutFNL";
+import EventDate from "@/components/EventDate";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import Partners from "@/components/Partners";
@@ -19,6 +20,7 @@ export default function Home() {
       <Programme />
       <Speakers />
       <Partners />
+      <EventDate />
       <Text />
     </main>
   );
